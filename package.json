@@ -2,7 +2,7 @@
   "name": "node-serial-worker",
   "version": "1.0.0",
   "description": "Run node-serial module in another node thread",
-  "main": "index.js",
+  "main": "serial_master",
   "author": "weizhi wang <weizhi.station.wang@gmail.com>",
   "license": "MIT",
   "dependencies": {

@@ -2,6 +2,10 @@
   "name": "serial-worker",
   "version": "1.0.0",
   "description": "Run node-serial module in another node thread",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/weiway/node-serialport-worker"
+  }
   "main": "serial_master",
   "author": "weizhi wang <weizhi.station.wang@gmail.com>",
   "license": "MIT",

@@ -9,14 +9,14 @@ var port = null;
 process.on('message',function(msg){
     let func_name = msg.func;
     let func_param = msg.param;
-    let res = {};
 
+    //console.log(func_name);
 
     switch (func_name) {
         case "init":
             let path = func_param[0];
             let opts = func_param[1];
-            port = new serialport(path,opts);
+            port = new serialport(path,opts,false);
             port.on('data',(data)=>{
                 //console.log(data);
                 let res = {
@@ -40,8 +40,27 @@ process.on('message',function(msg){
                 };
                 process.send(res);
             });
+            port.open();
 
             break;
+        case "list":
+            let res;
+            serial.list((err,ports)=>{
+                if(err){
+                    res = {
+                        eventType : SERIAL_EVENTS.list_failed,
+                        body : err
+                    };
+                }else{
+                    res = {
+                        eventType : SERIAL_EVENTS.list_success,
+                        body : ports
+                    };
+                }
+                process.send(res);
+            });
+            break;
+
         default:
             let callbackfunc = (e)=>{
                 if(e){

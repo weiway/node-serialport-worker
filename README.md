@@ -20,7 +20,7 @@ serialport.on('data',(data)=>{
 ```
 
 ###Known Issue###
-Event listener should be removed after SerialPort Close
+Please Help
 
 For ```serialport``` API https://github.com/voodootikigod/node-serialport
 

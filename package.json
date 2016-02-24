@@ -7,7 +7,7 @@
     "url": "https://github.com/weiway/node-serialport-worker"
   },
   "scripts": {
-    "test": "grunt --verbose"
+    "test": "grunt basic --verbose"
   },
   "main": "./serialport",
   "author": "weizhi wang <weizhi.station.wang@gmail.com>",

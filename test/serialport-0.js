@@ -5,6 +5,7 @@ const Serial = require("../serialport.js");
 //const Serial = require('serialport');
 const SerialPort = Serial.SerialPort;
 var port;
+var path
 //Testing Board : /dev/cu.usbserial-DA01LZKB
 
 describe('Serial Worker', ()=>{
@@ -14,6 +15,7 @@ describe('Serial Worker', ()=>{
                 if(err){
                     throw err;
                 }else{
+                    path = ports[0];
                     done();
                 }
             });

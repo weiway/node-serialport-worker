@@ -23,3 +23,7 @@ serialport.on('data',(data)=>{
 Event listener should be removed after SerialPort Close
 
 For ```serialport``` API https://github.com/voodootikigod/node-serialport
+
+
+###Dev Plan###
+Currently tests are copied from node-serialport ( https://github.com/voodootikigod/node-serialport ), in the future, hope serialport worker will pass all serialport tests

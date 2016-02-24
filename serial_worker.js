@@ -1,6 +1,7 @@
 'use strict'
 const serial = require('serialport');
 const serialport = serial.SerialPort;
+const process = require('process');
 const SERIAL_EVENTS = require(__dirname + '/serial_events.js');
 
 var port = null;

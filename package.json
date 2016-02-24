@@ -6,6 +6,9 @@
     "type": "git",
     "url": "https://github.com/weiway/node-serialport-worker"
   },
+  "scripts": {
+    "test": "grunt --verbose"
+  },
   "main": "./serialport",
   "author": "weizhi wang <weizhi.station.wang@gmail.com>",
   "license": "MIT",

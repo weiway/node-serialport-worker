@@ -6,12 +6,12 @@ const process = require("process");
 const SERIAL_EVENTS = require(__dirname + '/serial_events.js');
 
 
-var serial_worker = cp.fork(__dirname + '/serial_worker.js',{silent:true});
+var serial_worker = cp.fork(__dirname + '/serial_worker.js',{silent:false});
 
 
 
 class SerialInterface extends events.EventEmitter {
-    constructor(path,options){
+    constructor(path,options,immediate){
         super();
         let $ = this;
 
@@ -23,7 +23,7 @@ class SerialInterface extends events.EventEmitter {
 
         serial_worker.send({
             func: 'init',
-            param: [path,options]
+            param: [path,options,immediate]
         });
 
         $.reporter.on(SERIAL_EVENTS.data,(data)=>{
@@ -67,6 +67,13 @@ class SerialInterface extends events.EventEmitter {
             if(callback){
                 callback(err);
             }
+        });
+    }
+    isOpen(callback){
+        let $ = this;
+        serial_worker.send({func:'isOpen',param:undefined});
+        $.reporter.once(SERIAL_EVENTS.is_open,(flag)=>{
+            callback(flag)
         });
     }
     close(callback){

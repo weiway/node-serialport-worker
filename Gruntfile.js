@@ -8,7 +8,7 @@ module.exports = (grunt)=>{
     mochaTest: {
       serial: {
         options: { reporter: 'spec' },
-        src: ['test/**/*.js']
+        src: ['test/serialport-basic.js']
       },
       basic:{
           options: { reporter: 'spec' },
@@ -29,6 +29,7 @@ module.exports = (grunt)=>{
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.registerTask('default', ['mochaTest:basic','mochaTest:serial']);
   grunt.registerTask('basic', ['mochaTest:basic']);
+  grunt.registerTask('serial', ['mochaTest:serial']);
   grunt.registerTask('hint', ['jshint']);
 
 };

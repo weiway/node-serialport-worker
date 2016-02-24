@@ -2,14 +2,26 @@
   "name": "serial-worker",
   "version": "1.0.0",
   "description": "Run node-serial module in another node thread",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/weiway/node-serialport-worker"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weiway/node-serialport-worker"
   },
-  "main": "serial_master",
+  "main": "./serialport",
   "author": "weizhi wang <weizhi.station.wang@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "serialport": "^2.0.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "^2.4.5",
+    "sandboxed-module": "^2.0.3",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
+    "time-grunt": "^1.3.0"
   }
 }

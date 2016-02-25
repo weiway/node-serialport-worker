@@ -40,6 +40,7 @@ describe('Serial Worker', ()=>{
 
 
         describe('SerialPort.isOpen',()=>{
+            /*
             it('should return true when port is open',(done)=>{
                 port.open((err)=>{
                     port.isOpen((flag)=>{
@@ -49,6 +50,7 @@ describe('Serial Worker', ()=>{
                     })
                 })
             });
+            */
             it('should return false when port is closed',(done)=>{
 
                 port.close(()=>{
@@ -62,6 +64,7 @@ describe('Serial Worker', ()=>{
         });
 
         describe('SerialPort.on:open',()=>{
+            /*
             it('should catch open event when port opened',(done)=>{
                 port.on('open',(err)=>{
                     if(!err){
@@ -70,7 +73,7 @@ describe('Serial Worker', ()=>{
                 });
                 port.open();
             });
-
+            */
         });
 
         /*

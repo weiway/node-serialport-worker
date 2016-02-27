@@ -12,15 +12,16 @@ My goal is to have the same api as the original node-serialport.
 
 
 ### API ###
-I'm trying to create a uniform api to make using serial-worker as easy as re-write          ```require("serialport")``` to  ```require("serial-worker")```
+I'm trying to create a uniform api to make using serial-worker as easy as re-writting          ```require("serialport")``` to  ```require("serial-worker")```
 
 Current Supported API:
-    - ```Serial.SerialPort``` SerialPort Constructor
-    - ```Serial.list``` List current available ports
-    - ```SerialPort.isOpen(callback)``` Note this method is Async, which is different than the original ```serialport.isOpen```
-    - ```SerialPort.on('open')``` SerialPort Open Event
-    - ```SerialPort.on('data')``` SerialPort Data Event
-    - ```SerialPort.on('close')``` SerialPort Close Event
+
+-  ```Serial.SerialPort``` SerialPort Constructor
+-  ```Serial.list``` List current available ports
+-  ```SerialPort.isOpen(callback)``` Note this method is Async, which is different than the original ```serialport.isOpen```
+-  ```SerialPort.on('open')``` SerialPort Open Event
+-  ```SerialPort.on('data')``` SerialPort Data Event
+-  ```SerialPort.on('close')``` SerialPort Close Event
 
 
 
@@ -46,7 +47,8 @@ port.on('data',(data)=>{
 ```
 
 ###Known Issue###
-``Please Let Me know any Problem/Issues``
+
+Please let Me know any problem/issues
 
 
 

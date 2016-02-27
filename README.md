@@ -4,26 +4,57 @@
 ## Node-Serialport-Worker ##
 
 ### Run Node-serialport in a separate thread!###
-
 Electron + SerialPort = better IOT
 
+This module is aimed for creating a interface for using node-serialport in a seperate node thread
+
+My goal is to have the same api as the original node-serialport.
+
+
+### API ###
+I'm trying to create a uniform api to make using serial-worker as easy as re-write          ```require("serialport")``` to  ```require("serial-worker")```
+
+Current Supported API:
+    - ```Serial.SerialPort``` SerialPort Constructor
+    - ```Serial.list``` List current available ports
+    - ```SerialPort.isOpen(callback)``` Note this method is Async, which is different than the original ```serialport.isOpen```
+    - ```SerialPort.on('open')``` SerialPort Open Event
+    - ```SerialPort.on('data')``` SerialPort Data Event
+    - ```SerialPort.on('close')``` SerialPort Close Event
+
+
+
+
 ### Usage ###
+```
+$ npm install serialport-worker
+```
+
 Use serial worker just like the original node-serialport
 
 ```
-const SerialPort = require('serialport-worker');
-var serialport = new SerialPort(path, options);
+const serial = require('serialport-worker');
+var port = new serial.SerialPort(path, options,immediate);
 
-serialport.on('data',(data)=>{
+serial.list((e,ports)=>{
+    console.log(ports)
+});
+
+port.on('data',(data)=>{
   console.log(data);
 });
 ```
 
 ###Known Issue###
-Please Help
+``Please Let Me know any Problem/Issues``
+
+
+
 
 For ```serialport``` API https://github.com/voodootikigod/node-serialport
 
-
 ###Dev Plan###
-Currently tests are copied from node-serialport ( https://github.com/voodootikigod/node-serialport ), in the future, hope serialport worker will pass all serialport tests
+I'm trying to figure out how to test port connection on ```travis-ci```
+Right now I'm testing locally with a Arduino Uno
+
+Currently some tests are copied from node-serialport ( https://github.com/voodootikigod/node-serialport ), in the future, hope serialport worker will pass all node-serialport tests

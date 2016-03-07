@@ -28,7 +28,7 @@ Current Supported API:
 
 ### Usage ###
 ```
-$ npm install serialport-worker
+$ npm install serial-worker
 ```
 
 Use serial worker just like the original node-serialport

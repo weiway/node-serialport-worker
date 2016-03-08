@@ -67,7 +67,7 @@ For ```serialport``` API https://github.com/voodootikigod/node-serialport
 I'm trying to figure out how to test port connection on ```travis-ci```
 Right now I'm testing locally with a Arduino Uno
 
-If you want to test locally, please set ```noTravis``` to ```false``` in ```test/serialport-0.js```
+If you want to test locally, please set ```noTravis``` to ```true``` in ```test/serialport-0.js```
 
 
 

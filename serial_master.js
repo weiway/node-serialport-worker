@@ -11,9 +11,10 @@ var serial_worker = cp.fork(__dirname + '/serial_worker.js',{silent:false});
 
 
 class SerialInterface extends events.EventEmitter {
-    constructor(path,options,immediate){
+    constructor(path,options,immediate,callback){
         super();
         let $ = this;
+        let first = true
 
         $.reporter = new events.EventEmitter();
 
@@ -30,6 +31,10 @@ class SerialInterface extends events.EventEmitter {
             $.emit("data",data);
         });
         $.reporter.on(SERIAL_EVENTS.open,()=>{
+            if(first && callback){
+                first = !first;
+                callback();
+            }
             $.emit("open");
         });
         $.reporter.on(SERIAL_EVENTS.close,()=>{

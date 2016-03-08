@@ -35,7 +35,7 @@ Use serial worker just like the original node-serialport
 
 ```
 const serial = require('serialport-worker');
-var port = new serial.SerialPort(path, options, immediate);
+var port = new serial.SerialPort(path, options, immediate, callback);
 
 serial.list((e,ports)=>{
     console.log(ports)

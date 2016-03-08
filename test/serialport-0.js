@@ -7,7 +7,7 @@ const SerialPort = Serial.SerialPort;
 var port;
 var path
 
-const noTravis = false;
+const noTravis = true;
 //Testing Board : /dev/cu.usbserial-DA01LKGI
 
 describe('Serial Worker', ()=>{

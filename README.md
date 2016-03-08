@@ -11,7 +11,7 @@ Try this module. Electron + SerialPort = better IOT
 
 This module is aimed for creating a interface for using node-serialport in a seperate node thread
 
-My goal is to have the same api as the original node-serialport.
+My goal is to have the same api as the original node-serialport https://github.com/voodootikigod/node-serialport.
 
 
 ### API ###

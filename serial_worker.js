@@ -50,7 +50,7 @@ process.on('message',function(msg){
 
             if(immediate !== false){
                 port.open();
-            }
+            };
 
             break;
         case "list":
@@ -97,7 +97,7 @@ process.on('message',function(msg){
                         });
                     }
                 }
-                process.send(res)
+                process.send(res);
             }
             port[func_name](callbackfunc);
     }

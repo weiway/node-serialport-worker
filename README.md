@@ -34,7 +34,7 @@ Use serial worker just like the original node-serialport
 
 ```
 const serial = require('serialport-worker');
-var port = new serial.SerialPort(path, options,immediate);
+var port = new serial.SerialPort(path, options, immediate);
 
 serial.list((e,ports)=>{
     console.log(ports)
@@ -49,12 +49,27 @@ port.on('data',(data)=>{
 ``Please Let Me know any Problem/Issues``
 
 
-
-
 For ```serialport``` API https://github.com/voodootikigod/node-serialport
 
-###Dev Plan###
+###Pending API###
+
+- ```SerialPort.write()```
+- ```SerialPort.pause()```
+- ```SerialPort.resume()```
+- ```SerialPort.flush(callback)```
+- ```SerialPort.drain(callback)```
+- ```SerialPort.on('error',callback)```
+
+###Testing###
+
 I'm trying to figure out how to test port connection on ```travis-ci```
 Right now I'm testing locally with a Arduino Uno
+
+If you want to test locally, please set ```noTravis``` to ```false``` in ```test/serialport-0.js```
+
+
+
+
+
 
 Currently some tests are copied from node-serialport ( https://github.com/voodootikigod/node-serialport ), in the future, hope serialport worker will pass all node-serialport tests

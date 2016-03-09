@@ -99,7 +99,12 @@ process.on('message',function(msg){
                 }
                 process.send(res);
             }
-            port[func_name](callbackfunc);
+            if(func_param){
+                port[func_name](func_param,callbackfunc);
+            }else{
+                port[func_name](callbackfunc);
+            }
+
     }
 });
 

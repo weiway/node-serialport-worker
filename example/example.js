@@ -15,12 +15,13 @@ port.open(()=>{
     });
 
     port.on('data',(d)=>{
-        if(first && d){
-            first = !first;
-            console.log(d);
-        }
+        console.log("Data Received!");
     });
 
-
+    setInterval(()=>{
+        port.write(new Buffer('hello world','utf8'), ()=>{
+            console.log("Written!");
+        });
+    },1000);
 
 });

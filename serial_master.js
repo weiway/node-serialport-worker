@@ -75,7 +75,19 @@ class SerialInterface extends events.EventEmitter {
         });
     }
 
-    write(callback){
+    write(buffer, callback){
+        let $ = this;
+        serial_worker.send({func:'write',param:buffer});
+        $.reporter.once(SERIAL_EVENTS.write_success,()=>{
+            if(callback){
+                callback();
+            }
+        });
+        $.reporter.once(SERIAL_EVENTS.write_failed,(err)=>{
+            if(callback){
+                callback(err);
+            }
+        });
 
     }
 

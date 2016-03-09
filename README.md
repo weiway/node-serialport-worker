@@ -25,6 +25,7 @@ Current Supported API:
 -  ```SerialPort.on('open')``` SerialPort Open Event
 -  ```SerialPort.on('data')``` SerialPort Data Event
 -  ```SerialPort.on('close')``` SerialPort Close Event
+-  ```SerialPort.write(buffer,callback)``` Writes data to the SerialPort.
 
 
 
@@ -47,6 +48,12 @@ serial.list((e,ports)=>{
 port.on('data',(data)=>{
   console.log(data);
 });
+
+port.open(()=>{
+    port.write(new Buffer('Hello!','utf8'),()=>{
+        console.log('Written!');
+    });
+})
 ```
 
 ###Known Issue###
@@ -58,7 +65,6 @@ For ```serialport``` API https://github.com/voodootikigod/node-serialport
 
 ###Pending API###
 
-- ```SerialPort.write()```
 - ```SerialPort.pause()```
 - ```SerialPort.resume()```
 - ```SerialPort.flush(callback)```

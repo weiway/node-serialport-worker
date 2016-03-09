@@ -28,6 +28,9 @@ class SerialInterface extends events.EventEmitter {
         });
 
         $.reporter.on(SERIAL_EVENTS.data,(data)=>{
+            console.log("data");
+            if(data.type=="Buffer")
+              data = new Buffer(data.data);
             $.emit("data",data);
         });
         $.reporter.on(SERIAL_EVENTS.open,()=>{

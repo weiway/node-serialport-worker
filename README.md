@@ -4,11 +4,14 @@
 ## Node-Serialport-Worker ##
 
 ### Run Node-serialport in a separate thread!###
-Electron + SerialPort = better IOT
+
+Extremely high CPU usage inside Electron? https://github.com/atom/electron/issues/2928
+
+Try this module. Electron + SerialPort = better IOT
 
 This module is aimed for creating a interface for using node-serialport in a seperate node thread
 
-My goal is to have the same api as the original node-serialport.
+My goal is to have the same api as the original node-serialport https://github.com/voodootikigod/node-serialport.
 
 
 ### API ###

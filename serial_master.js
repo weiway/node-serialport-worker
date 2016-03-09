@@ -74,6 +74,11 @@ class SerialInterface extends events.EventEmitter {
             }
         });
     }
+
+    write(callback){
+
+    }
+
     isOpen(callback){
         let $ = this;
         serial_worker.send({func:'isOpen',param:undefined});

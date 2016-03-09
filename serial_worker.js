@@ -1,12 +1,12 @@
 'use strict'
 const serial = require('serialport');
 const serialport = serial.SerialPort;
-const process = require('process');
+const processModule = require('process');
 const SERIAL_EVENTS = require(__dirname + '/serial_events.js');
 
 var port = null;
 
-process.on('message',function(msg){
+processModule.on('message',function(msg){
     let func_name = msg.func;
     let func_param = msg.param;
     //console.log(func_param);
@@ -24,7 +24,7 @@ process.on('message',function(msg){
                     eventType : SERIAL_EVENTS.data,
                     body : data
                 };
-                process.send(res);
+                processModule.send(res);
             });
 
             //This event sometime fired sometimes not fired
@@ -37,7 +37,7 @@ process.on('message',function(msg){
                     body : undefined
                 };
                 console.log("SENDING GGG");
-                process.send(res);
+                processModule.send(res);
             });
             */
             port.on('close',()=>{
@@ -45,7 +45,7 @@ process.on('message',function(msg){
                     eventType : SERIAL_EVENTS.close,
                     body : undefined
                 };
-                process.send(res);
+                processModule.send(res);
             });
 
             if(immediate !== false){
@@ -67,7 +67,7 @@ process.on('message',function(msg){
                         body : ports
                     };
                 }
-                process.send(list_res);
+                processModule.send(list_res);
             });
             break;
 
@@ -76,7 +76,7 @@ process.on('message',function(msg){
                 eventType:SERIAL_EVENTS.is_open,
                 body : port.isOpen()
             }
-            process.send(is_res);
+            processModule.send(is_res);
             break;
 
         default:
@@ -91,13 +91,13 @@ process.on('message',function(msg){
 
                     //fix open event not fired by ommiting original open event
                     if(func_name === "open"){
-                        process.send({
+                        processModule.send({
                             eventType : SERIAL_EVENTS.open,
                             body : undefined
                         });
                     }
                 }
-                process.send(res);
+                processModule.send(res);
             }
             if(func_param){
                 port[func_name](func_param,callbackfunc);

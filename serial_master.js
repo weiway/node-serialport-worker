@@ -2,7 +2,7 @@
 
 const events = require('events');
 const cp = require('child_process');
-const process = require("process");
+const processModule = require("process");
 const SERIAL_EVENTS = require(__dirname + '/serial_events.js');
 
 
@@ -120,7 +120,7 @@ class SerialInterface extends events.EventEmitter {
 
 
 
-process.on('exit', function() {
+processModule.on('exit', function() {
     serial_worker.kill();
 });
 

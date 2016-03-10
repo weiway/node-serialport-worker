@@ -21,10 +21,14 @@ Current Supported API:
 
 -  ```Serial.SerialPort``` SerialPort Constructor
 -  ```Serial.list``` List current available ports
+-  ```Serial.parser``` Original serialport parsers
 -  ```SerialPort.isOpen(callback)``` Note this method is Async, which is different than the original ```serialport.isOpen```
 -  ```SerialPort.on('open')``` SerialPort Open Event
 -  ```SerialPort.on('data')``` SerialPort Data Event
 -  ```SerialPort.on('close')``` SerialPort Close Event
+-  ```SerialPort.close(callback)``` Close port
+-  ```SerialPort.open(callback)``` Open port
+-  ```SerialPort.set(options,callback)``` 
 -  ```SerialPort.write(buffer,callback)``` Writes data to the SerialPort.
 
 

@@ -1,6 +1,6 @@
 {
   "name": "serial-worker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Run node-serial module in another node thread",
   "repository": {
     "type": "git",

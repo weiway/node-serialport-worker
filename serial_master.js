@@ -93,6 +93,16 @@ class SerialInterface extends events.EventEmitter {
         });
     }
 
+    pause(){
+        //let $ = this;
+        serial_worker.send({func:"pause",parm:undefined});
+    }
+
+    resume(){
+        //let $ = this;
+        serial_worker.send({func:"resume",parm:undefined});
+    }
+
     write(buffer, callback){
         let $ = this;
         serial_worker.send({func:'write',param:buffer});
@@ -106,7 +116,6 @@ class SerialInterface extends events.EventEmitter {
                 callback(err);
             }
         });
-
     }
 
     isOpen(callback){

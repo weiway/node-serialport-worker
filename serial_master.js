@@ -2,7 +2,7 @@
 
 const events = require('events');
 const cp = require('child_process');
-const process = require("process");
+const processModule = require("process");
 const SERIAL_EVENTS = require(__dirname + '/serial_events.js');
 
 
@@ -28,6 +28,9 @@ class SerialInterface extends events.EventEmitter {
         });
 
         $.reporter.on(SERIAL_EVENTS.data,(data)=>{
+            console.log("data");
+            if(data.type=="Buffer")
+              data = new Buffer(data.data);
             $.emit("data",data);
         });
         $.reporter.on(SERIAL_EVENTS.open,()=>{
@@ -69,6 +72,21 @@ class SerialInterface extends events.EventEmitter {
             }
         });
         $.reporter.once(SERIAL_EVENTS.open_failed,(err)=>{
+            if(callback){
+                callback(err);
+            }
+        });
+    }
+
+    set(options, callback){
+        let $ = this;
+        serial_worker.send({func:"set",param:options});
+        $.reporter.once(SERIAL_EVENTS.set_success,(result)=>{
+            if(callback){
+                callback(null, result);
+            }
+        });
+        $.reporter.once(SERIAL_EVENTS.set_failed,(err)=>{
             if(callback){
                 callback(err);
             }
@@ -120,7 +138,7 @@ class SerialInterface extends events.EventEmitter {
 
 
 
-process.on('exit', function() {
+processModule.on('exit', function() {
     serial_worker.kill();
 });
 

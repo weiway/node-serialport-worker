@@ -15,6 +15,9 @@ module.exports = {
     write_success : "serial-write-success",
     write_failed : "serial-write-failed",
 
+    set_success : "serial-set-success",
+    set_failed : "serial-set-failed",
+
     //Public Serial Port Events
     data : "serial-data",
     open : "serial-open",

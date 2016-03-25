@@ -19,6 +19,7 @@ class SerialInterface extends events.EventEmitter {
         $.reporter = new events.EventEmitter();
 
         serial_worker.on('message',(msg)=>{
+            //console.log(msg);
             $.reporter.emit(msg.eventType,msg.body);
         });
 
@@ -28,7 +29,7 @@ class SerialInterface extends events.EventEmitter {
         });
 
         $.reporter.on(SERIAL_EVENTS.data,(data)=>{
-            console.log("data");
+            //console.log("data");
             if(data.type=="Buffer")
               data = new Buffer(data.data);
             $.emit("data",data);
@@ -44,7 +45,8 @@ class SerialInterface extends events.EventEmitter {
             $.emit("close");
         });
         $.reporter.on(SERIAL_EVENTS.error,(err)=>{
-            $.emit('error', err);
+            //console.log(err);
+            $.emit('error',new Error(err));
         });
     }
 

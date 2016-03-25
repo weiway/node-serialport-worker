@@ -1,13 +1,21 @@
 'use strict'
 const Serial = require(__dirname + "/../serialport.js");
-const port = new Serial.SerialPort('/dev/cu.usbserial-DA01LKGI',null,false,null);
+const port = new Serial.SerialPort('/dev/cu.usbserial-DA01M0Q1',null,true,null);
 
 //Serial.list((e,p)=>{console.log(p)});
+
+
+port.on('error',(err)=>{
+    console.log(err);
+})
 
 port.on('open',()=>{
     console.log("Port Open");
 });
 
+
+
+/*
 port.open(()=>{
     let first = true;
     port.isOpen((f)=>{
@@ -33,3 +41,4 @@ port.open(()=>{
     },1000);
 
 });
+*/

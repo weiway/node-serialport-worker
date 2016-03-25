@@ -48,6 +48,14 @@ processModule.on('message',function(msg){
                 processModule.send(res);
             });
 
+            port.on('error',(err)=>{
+                let res = {
+                    eventType : SERIAL_EVENTS.error,
+                    body : err
+                }
+                processModule.send(res);
+            });
+
             if(immediate !== false){
                 port.open();
             };

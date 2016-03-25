@@ -14,6 +14,10 @@ module.exports = {
     close_failed : "serial-close-failed",
     write_success : "serial-write-success",
     write_failed : "serial-write-failed",
+    flush_success: "serial-flush-success",
+    flush_failed : "serial-flush-failed",
+    drain_success: "serial-drain-success",
+    drain_failed : "serial-drain-failed",
 
     set_success : "serial-set-success",
     set_failed : "serial-set-failed",
@@ -22,4 +26,5 @@ module.exports = {
     data : "serial-data",
     open : "serial-open",
     close : "serial-close",
+    error : "serial-error"
 };

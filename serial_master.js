@@ -43,6 +43,9 @@ class SerialInterface extends events.EventEmitter {
         $.reporter.on(SERIAL_EVENTS.close,()=>{
             $.emit("close");
         });
+        $.reporter.on(SERIAL_EVENTS.error,(err)=>{
+            $.emit('error', err);
+        });
     }
 
     static list(callback){
@@ -112,6 +115,36 @@ class SerialInterface extends events.EventEmitter {
             }
         });
         $.reporter.once(SERIAL_EVENTS.write_failed,(err)=>{
+            if(callback){
+                callback(err);
+            }
+        });
+    }
+
+    flush(callback){
+        let $ = this;
+        serial_worker.send({func:'flush',param:undefined});
+        $.reporter.once(SERIAL_EVENTS.flush_success,()=>{
+            if(callback){
+                callback();
+            }
+        });
+        $.reporter.once(SERIAL_EVENTS.flush_failed,(err)=>{
+            if(callback){
+                callback(err);
+            }
+        });
+    }
+
+    drain(callback){
+        let $ = this;
+        serial_worker.send({func:'drain',param:undefined});
+        $.reporter.once(SERIAL_EVENTS.drain_success,()=>{
+            if(callback){
+                callback();
+            }
+        });
+        $.reporter.once(SERIAL_EVENTS.drain_failed,(err)=>{
             if(callback){
                 callback(err);
             }

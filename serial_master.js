@@ -72,11 +72,13 @@ class SerialInterface extends events.EventEmitter {
         let $ = this;
         serial_worker.send({func:"open",param:undefined});
         $.reporter.once(SERIAL_EVENTS.open_success,()=>{
+            $.reporter.removeAllListeners(SERIAL_EVENTS.open_failed);
             if(callback){
                 callback();
             }
         });
         $.reporter.once(SERIAL_EVENTS.open_failed,(err)=>{
+            $.reporter.removeAllListeners(SERIAL_EVENTS.open_success);
             if(callback){
                 callback(err);
             }
@@ -87,11 +89,13 @@ class SerialInterface extends events.EventEmitter {
         let $ = this;
         serial_worker.send({func:"set",param:options});
         $.reporter.once(SERIAL_EVENTS.set_success,(result)=>{
+            $.reporter.removeAllListeners(SERIAL_EVENTS.set_success);
             if(callback){
                 callback(null, result);
             }
         });
         $.reporter.once(SERIAL_EVENTS.set_failed,(err)=>{
+            $.reporter.removeAllListeners(SERIAL_EVENTS.set_failed);
             if(callback){
                 callback(err);
             }
@@ -112,11 +116,14 @@ class SerialInterface extends events.EventEmitter {
         let $ = this;
         serial_worker.send({func:'write',param:buffer});
         $.reporter.once(SERIAL_EVENTS.write_success,()=>{
+            //Clean Up the fail listener
+            $.reporter.removeAllListeners(SERIAL_EVENTS.write_failed);
             if(callback){
                 callback();
             }
         });
         $.reporter.once(SERIAL_EVENTS.write_failed,(err)=>{
+            $.reporter.removeAllListeners(SERIAL_EVENTS.write_success);
             if(callback){
                 callback(err);
             }
@@ -126,12 +133,15 @@ class SerialInterface extends events.EventEmitter {
     flush(callback){
         let $ = this;
         serial_worker.send({func:'flush',param:undefined});
+
         $.reporter.once(SERIAL_EVENTS.flush_success,()=>{
+            $.reporter.removeAllListeners(SERIAL_EVENTS.flush_failed);
             if(callback){
                 callback();
             }
         });
         $.reporter.once(SERIAL_EVENTS.flush_failed,(err)=>{
+            $.reporter.removeAllListeners(SERIAL_EVENTS.flush_success);
             if(callback){
                 callback(err);
             }
@@ -142,11 +152,13 @@ class SerialInterface extends events.EventEmitter {
         let $ = this;
         serial_worker.send({func:'drain',param:undefined});
         $.reporter.once(SERIAL_EVENTS.drain_success,()=>{
+            $.reporter.removeAllListeners(SERIAL_EVENTS.drain_failed);
             if(callback){
                 callback();
             }
         });
         $.reporter.once(SERIAL_EVENTS.drain_failed,(err)=>{
+            $.reporter.removeAllListeners(SERIAL_EVENTS.drain_success);
             if(callback){
                 callback(err);
             }
@@ -164,11 +176,13 @@ class SerialInterface extends events.EventEmitter {
         let $ = this;
         serial_worker.send({func:"close",param:undefined});
         $.reporter.once(SERIAL_EVENTS.close_success,()=>{
+            $.reporter.removeAllListeners(SERIAL_EVENTS.close_failed);
             if(callback){
                 callback();
             }
         });
         $.reporter.once(SERIAL_EVENTS.close_failed,(err)=>{
+            $.reporter.removeAllListeners(SERIAL_EVENTS.close_success);
             if(callback){
                 callback(err);
             }

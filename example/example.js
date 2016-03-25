@@ -16,7 +16,7 @@ port.on('open',()=>{
 
 
 
-/*
+
 port.open(()=>{
     let first = true;
     port.isOpen((f)=>{
@@ -46,4 +46,3 @@ port.open(()=>{
         });
     },1000);
 });
-*/

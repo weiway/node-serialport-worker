@@ -7,7 +7,7 @@ const SerialPort = Serial.SerialPort;
 var port;
 var path
 
-const noTravis = false;
+const noTravis = true;
 //Testing Board : /dev/cu.usbserial-DA01LKGI
 
 describe('Serial Worker', ()=>{
@@ -38,7 +38,7 @@ describe('Serial Worker', ()=>{
 
     if(noTravis){
         describe('SerialPort',()=>{
-            port = new SerialPort('/dev/cu.usbserial-DA01LKGI',{},false);
+            port = new SerialPort('/dev/cu.usbserial-DA01M0Q1',{},false);
 
             describe('SerialPort.isOpen',()=>{
 
@@ -67,12 +67,13 @@ describe('Serial Worker', ()=>{
             describe('SerialPort.on:open',()=>{
 
                 it('should catch open event when port opened',(done)=>{
+                    port.open();
                     port.on('open',(err)=>{
                         if(!err){
                             done();
                         }
                     });
-                    port.open();
+
                 });
 
             });

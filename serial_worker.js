@@ -17,6 +17,7 @@ processModule.on('message',function(msg){
             let path = func_param[0];
             let opts = func_param[1];
             let immediate = func_param[2];
+            //console.log(immediate);
             port = new serialport(path,opts,false);
             port.on('data',(data)=>{
                 //console.log(data);
@@ -27,19 +28,18 @@ processModule.on('message',function(msg){
                 processModule.send(res);
             });
 
-            //This event sometime fired sometimes not fired
+            //This event sometimes fired sometimes not fired
             //Ommiting Original Open Event to avoid firing issue
             //New Open Event will be fired in open() callback
-            /*
             port.on('open',()=>{
                 let res = {
                     eventType : SERIAL_EVENTS.open,
                     body : undefined
                 };
-                console.log("SENDING GGG");
+                //console.log("SENDING GGG");
                 processModule.send(res);
             });
-            */
+
             port.on('close',()=>{
                 let res = {
                     eventType : SERIAL_EVENTS.close,
@@ -58,7 +58,7 @@ processModule.on('message',function(msg){
                 processModule.send(res);
             });
 
-
+            //Open Immediate
             if(immediate !== false){
                 port.open();
             };
@@ -101,12 +101,14 @@ processModule.on('message',function(msg){
                     res.body = undefined;
 
                     //fix open event not fired by ommiting original open event
+                    /*
                     if(func_name === "open"){
                         processModule.send({
                             eventType : SERIAL_EVENTS.open,
                             body : undefined
                         });
                     }
+                    */
                 }
                 processModule.send(res);
             }

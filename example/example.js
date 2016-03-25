@@ -1,6 +1,7 @@
 'use strict'
 const Serial = require(__dirname + "/../serialport.js");
-const port = new Serial.SerialPort('/dev/cu.usbserial-DA01M0Q1',null,true,null);
+
+const port = new Serial.SerialPort('/dev/cu.usbserial-DA01M0Q1',null,false,null);
 
 //Serial.list((e,p)=>{console.log(p)});
 
@@ -35,10 +36,14 @@ port.open(()=>{
     },5000);
 
     setInterval(()=>{
-        port.write(new Buffer('hello world','utf8'), ()=>{
-            console.log("Written!");
+        port.write(new Buffer('hello world','utf8'), (err)=>{
+            if(err){
+                console.log(err);
+            }else{
+                console.log("Written!");
+            }
+
         });
     },1000);
-
 });
 */

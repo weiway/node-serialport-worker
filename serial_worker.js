@@ -93,9 +93,10 @@ processModule.on('message',function(msg){
         default:
             let res = {};
             let callbackfunc = (e)=>{
+
                 if(e){
                     res.eventType = SERIAL_EVENTS[func_name + "_failed"];
-                    res.body = e;
+                    res.body = e.message;
                 }else{
                     res.eventType = SERIAL_EVENTS[func_name + "_success"];
                     res.body = undefined;

@@ -80,7 +80,7 @@ class SerialInterface extends events.EventEmitter {
         $.reporter.once(SERIAL_EVENTS.open_failed,(err)=>{
             $.reporter.removeAllListeners(SERIAL_EVENTS.open_success);
             if(callback){
-                callback(err);
+                callback(new Error(err));
             }
         });
     }
@@ -97,7 +97,7 @@ class SerialInterface extends events.EventEmitter {
         $.reporter.once(SERIAL_EVENTS.set_failed,(err)=>{
             $.reporter.removeAllListeners(SERIAL_EVENTS.set_failed);
             if(callback){
-                callback(err);
+                callback(new Error(err));
             }
         });
     }
@@ -125,7 +125,7 @@ class SerialInterface extends events.EventEmitter {
         $.reporter.once(SERIAL_EVENTS.write_failed,(err)=>{
             $.reporter.removeAllListeners(SERIAL_EVENTS.write_success);
             if(callback){
-                callback(err);
+                callback(new Error(err));
             }
         });
     }
@@ -143,7 +143,7 @@ class SerialInterface extends events.EventEmitter {
         $.reporter.once(SERIAL_EVENTS.flush_failed,(err)=>{
             $.reporter.removeAllListeners(SERIAL_EVENTS.flush_success);
             if(callback){
-                callback(err);
+                callback(new Error(err));
             }
         });
     }
@@ -160,7 +160,7 @@ class SerialInterface extends events.EventEmitter {
         $.reporter.once(SERIAL_EVENTS.drain_failed,(err)=>{
             $.reporter.removeAllListeners(SERIAL_EVENTS.drain_success);
             if(callback){
-                callback(err);
+                callback(new Error(err));
             }
         });
     }
@@ -184,7 +184,7 @@ class SerialInterface extends events.EventEmitter {
         $.reporter.once(SERIAL_EVENTS.close_failed,(err)=>{
             $.reporter.removeAllListeners(SERIAL_EVENTS.close_success);
             if(callback){
-                callback(err);
+                callback(new Error(err));
             }
         });
     }

@@ -39,18 +39,22 @@ describe('Serial Worker', () => {
 
   if (noTravis) {
     describe('SerialPort', () => {
-      port = new SerialPort('/dev/cu.usbserial-DA01M0Q1', {}, false)
+      port = new SerialPort('/dev/cu.usbserial-DA01LSNX', {
+        baudRate: 9600
+      }, false)
 
       describe('SerialPort.isOpen', () => {
         it('should return true when port is open', (done) => {
           port.open((err) => {
-            port.isOpen((flag) => {
-              if (flag) {
-                done()
-              }
-            })
+            if (!err) {
+              port.isOpen((flag) => {
+                if (flag) {
+                  done()
+                }
+              })
+            }
           })
-        })
+        }).timeout(3000)
 
         it('should return false when port is closed', (done) => {
           port.close(() => {
@@ -65,28 +69,29 @@ describe('Serial Worker', () => {
 
       describe('SerialPort.on:open', () => {
         it('should catch open event when port opened', (done) => {
-          port.open()
-          port.on('open', (err) => {
+          port.once('open', (err) => {
             if (!err) {
+              port.close()
               done()
             }
           })
-        })
+          port.open()
+        }).timeout(3000)
       })
 
       describe('SerialPort.on:data', () => {
         it('should catch data event when data event fired', (done) => {
-          port.on('data', (err, data) => {
-            if (!err) {
-              done()
-            }
+          port.once('data', (data) => {
+            done()
           })
-        })
+          port.open(() => {
+          })
+        }).timeout(3000)
       })
 
       describe('SerialPort.on:close', () => {
-        it('should catch close event when port is closed', () => {
-          port.on('close', (err) => {
+        it('should catch close event when port is closed', (done) => {
+          port.once('close', (err) => {
             if (!err) {
               done()
             }

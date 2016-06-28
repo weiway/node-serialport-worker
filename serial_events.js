@@ -26,5 +26,6 @@ module.exports = {
   data: 'serial-data',
   open: 'serial-open',
   close: 'serial-close',
-  error: 'serial-error'
+  error: 'serial-error',
+  disconnect: 'serial-disconnect'
 }

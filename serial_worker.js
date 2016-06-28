@@ -10,18 +10,15 @@ var port = null
 processModule.on('message', function (msg) {
   let funcName = msg.func
   let funcParam = msg.param
-    // console.log(funcParam);
-    // console.log(funcName);
 
   switch (funcName) {
   case 'init':
     let path = funcParam[0]
     let opts = funcParam[1]
     let immediate = funcParam[2]
-            // console.log(immediate);
+
     port = new SerialPort(path, opts, false)
     port.on('data', (data) => {
-                // console.log(data);
       let res = {
         eventType: SERIAL_EVENTS.data,
         body: data
@@ -29,15 +26,15 @@ processModule.on('message', function (msg) {
       processModule.send(res)
     })
 
-            // This event sometimes fired sometimes not fired
-            // Ommiting Original Open Event to avoid firing issue
-            // New Open Event will be fired in open() callback
+    // This event sometimes fired sometimes not fired
+    // Ommiting Original Open Event to avoid firing issue
+    // New Open Event will be fired in open() callback
     port.on('open', () => {
       let res = {
         eventType: SERIAL_EVENTS.open,
         body: undefined
       }
-                // console.log("SENDING GGG");
+
       processModule.send(res)
     })
 
@@ -50,7 +47,6 @@ processModule.on('message', function (msg) {
     })
 
     port.on('error', (err) => {
-                // console.log(err);
       let res = {
         eventType: SERIAL_EVENTS.error,
         body: err.message
@@ -58,7 +54,15 @@ processModule.on('message', function (msg) {
       processModule.send(res)
     })
 
-            // Open Immediate
+    port.on('disconnect', (err) => {
+      let res = {
+        eventType: SERIAL_EVENTS.disconnect,
+        body: err.message
+      }
+      processModule.send(res)
+    })
+
+    // Open Immediate
     if (immediate !== false) {
       port.open()
     };
@@ -100,15 +104,15 @@ processModule.on('message', function (msg) {
         res.eventType = SERIAL_EVENTS[funcName + '_success']
         res.body = undefined
 
-                    // fix open event not fired by ommiting original open event
-                    /*
-                    if(funcName === "open"){
-                        processModule.send({
-                            eventType : SERIAL_EVENTS.open,
-                            body : undefined
-                        });
-                    }
-                    */
+        // fix open event not fired by ommiting original open event
+        /*
+        if(funcName === "open"){
+            processModule.send({
+                eventType : SERIAL_EVENTS.open,
+                body : undefined
+            });
+        }
+        */
       }
       processModule.send(res)
     }

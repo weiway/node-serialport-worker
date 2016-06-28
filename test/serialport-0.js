@@ -89,6 +89,20 @@ describe('Serial Worker', () => {
         }).timeout(3000)
       })
 
+      /*
+      describe('SerialPort.on:disconnect', () => {
+        it('should catch disconnect event when port is disconnected', (done) => {
+          port.once('disconnect', (err) => {
+            console.log(err)
+            if (err) {
+              done()
+            }
+          })
+          port.close()
+        }).timeout(3000)
+      })
+      */
+
       describe('SerialPort.on:close', () => {
         it('should catch close event when port is closed', (done) => {
           port.once('close', (err) => {
@@ -96,7 +110,9 @@ describe('Serial Worker', () => {
               done()
             }
           })
-          port.close()
+          port.open(() => {
+            port.close()
+          })
         })
       })
     })

@@ -26,6 +26,7 @@ Current Supported API:
 -  ```SerialPort.on('open')``` SerialPort Open Event
 -  ```SerialPort.on('data')``` SerialPort Data Event
 -  ```SerialPort.on('close')``` SerialPort Close Event
+-  ```SerialPort.on('disconnect')``` SerialPort Disconnect Event
 - ```SerialPort.on('error')```
 - ```SerialPort.pause()``` Pause Connection
 - ```SerialPort.resume()``` Resume Connection

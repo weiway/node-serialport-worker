@@ -47,6 +47,10 @@ class SerialInterface extends events.EventEmitter {
             // console.log(err);
       $.emit('error', new Error(err))
     })
+    $.reporter.on(SERIAL_EVENTS.disconnect, (err) => {
+            // console.log(err);
+      $.emit('disconnect', new Error(err))
+    })
   }
 
   static list (callback) {

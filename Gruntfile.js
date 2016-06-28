@@ -1,8 +1,7 @@
-'use strict';
+'use strict'
 
-module.exports = (grunt)=>{
-
-  require('time-grunt')(grunt);
+module.exports = (grunt) => {
+  require('time-grunt')(grunt)
 
   grunt.initConfig({
     mochaTest: {
@@ -10,26 +9,25 @@ module.exports = (grunt)=>{
         options: { reporter: 'spec' },
         src: ['test/serialport-basic.js']
       },
-      basic:{
-          options: { reporter: 'spec' },
-          src: ['test/serialport-0.js']
+      basic: {
+        options: { reporter: 'spec' },
+        src: ['test/serialport-0.js']
       }
 
     },
     jshint: {
       all: ['*.js'],
-      options:{
+      options: {
         jshintrc: true,
         esverion: 9
       }
     }
-  });
+  })
 
-  grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.registerTask('default', ['mochaTest:basic','mochaTest:serial']);
-  grunt.registerTask('basic', ['mochaTest:basic']);
-  grunt.registerTask('serial', ['mochaTest:serial']);
-  grunt.registerTask('hint', ['jshint']);
-
-};
+  grunt.loadNpmTasks('grunt-mocha-test')
+  grunt.loadNpmTasks('grunt-contrib-jshint')
+  grunt.registerTask('default', ['mochaTest:basic', 'mochaTest:serial'])
+  grunt.registerTask('basic', ['mochaTest:basic'])
+  grunt.registerTask('serial', ['mochaTest:serial'])
+  grunt.registerTask('hint', ['jshint'])
+}

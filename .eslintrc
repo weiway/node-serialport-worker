@@ -1,0 +1,19 @@
+{
+  "extends" : [
+    "standard"
+  ],
+  "env"     : {
+    "browser" : false
+  },
+  "globals" : {
+    "__DEV__"      : false,
+    "__PROD__"     : false,
+    "__DEBUG__"    : false,
+    "__COVERAGE__" : false,
+    "__BASENAME__" : false
+  },
+  "rules": {
+    "semi" : ['error','never'],
+    "indent": ['error', 2],
+  }
+}

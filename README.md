@@ -66,7 +66,7 @@ port.open(()=>{
 })
 ```
 
-### Known Issu e###
+### Known Issues ###
 
 Please let Me know any problem/issues
 

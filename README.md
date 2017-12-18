@@ -66,14 +66,14 @@ port.open(()=>{
 })
 ```
 
-###Known Issue###
+### Known Issu e###
 
 Please let Me know any problem/issues
 
 
 For ```serialport``` API https://github.com/voodootikigod/node-serialport
 
-###Testing###
+### Testing ###
 
 I'm trying to figure out how to test port connection on ```travis-ci```
 Right now I'm testing locally with a Arduino Uno
